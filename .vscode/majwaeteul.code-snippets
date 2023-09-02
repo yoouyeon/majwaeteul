@@ -1,0 +1,26 @@
+{
+  "Receive Input from Standard Input": {
+    "scope": "javascript",
+    "prefix": "stdin",
+    "body": [
+      "const readline = require('readline');",
+      "let rl = readline.createInterface({",
+      "\tinput: process.stdin,",
+      "\toutput: process.stdout,",
+      "});",
+      "",
+      "let input;",
+      "",
+      "rl.on('line', (line) => {",
+      "\tinput = line;",
+      "\trl.close();",
+      "});",
+      "",
+      "rl.on('close', () => {",
+      "\tconsole.log(input);",
+      "})",
+      ""
+    ],
+    "description": "Receive Input from Standard Input"
+  }
+}
