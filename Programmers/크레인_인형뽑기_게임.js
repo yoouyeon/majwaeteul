@@ -2,16 +2,25 @@ function solution(board, moves) {
   let count = 0;
   const basket = [];
   // 크레인을 움직일 보드 생성
-  const craneBoard = new Array(board.length);
-  for (let i = 0; i < craneBoard.length; i++) {
-    craneBoard[i] = new Array();
-  }
-  board.reverse().forEach((row) =>
+  // const craneBoard = new Array(board.length);
+  // for (let i = 0; i < craneBoard.length; i++) {
+  //   craneBoard[i] = new Array();
+  // }
+  // board.reverse().forEach((row) =>
+  //   row.forEach((type, idx) => {
+  //     if (type === 0) return;
+  //     craneBoard[idx].push(type);
+  //   })
+  // );
+  // 크레인을 움직일 보드 생성 - 좀 더 깔끔한 방법
+  const craneBoard = board.reverse().reduce((acc, row) => {
     row.forEach((type, idx) => {
       if (type === 0) return;
-      craneBoard[idx].push(type);
-    })
-  );
+      if (!acc[idx]) acc[idx] = [];
+      acc[idx].push(type);
+    });
+    return acc;
+  }, new Array(board.length));
   // 인형 뽑기~
   moves.forEach((move) => {
     const targetIdx = move - 1;
